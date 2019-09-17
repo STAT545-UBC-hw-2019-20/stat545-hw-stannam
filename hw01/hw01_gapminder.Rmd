@@ -3,8 +3,10 @@ title: "Hw01_Ex02 R Markdown for Gapminder exploration"
 author: "Stanley Nam"
 date: "September 17, 2019"
 output: 
-  html_document:
-    theme: cerulean
+  github_document:
+    toc: true
+    toc_depth: 2
+always_allow_html: yes
 ---
 
 <!-- TODO: more tinkering with the YAML header??? -->
@@ -22,7 +24,7 @@ DT::datatable(tibbleData)
 
 # What I want to do
 
-Investigate factors behind the different life expectancies using the contemporary data.
+Investigate factors behind the different life expectancies using contemporary data.
 
 # Samples later than 2000
 
@@ -31,46 +33,33 @@ We are living in the 21st century. Why not give more weight on the contemporary 
 contempData <- gapminder[which(gapminder$year > 2000),]
 ```
 
-# factors that influence Life Expectancy
+Now I'm a bit concerned: do we have enough data points? Provide descriptive statistics of the dataset.
+```{r summary }
+summary(contempData)
+```
 
-## correlation between GDP per Capita and Life Expectancy
+# Factors that influence life expectancy
 
-...although it seems obvious that the rich lives longer.
+## Correlation between GDP per capita and life expectancy
+
+...although it seems obvious that the rich live longer.
 
 Plot GDP on the y-axis and Life Expectancy on the x-axis:
 
 ```{r gdp-lifeexp, echo=FALSE}
-plot(contempData$gdpPercap, contempData$lifeExp)
+GDP_per_capita <- contempData$gdpPercap
+life_Exp <- contempData$lifeExp
+plot(GDP_per_capita, life_Exp)
 ```
 
 ## correlation between population and Life Expectancy
 
-Now it is less obvious but a research (Calhoun, J.B., 1973. Death squared: the explosive growth and demise of a mouse population. Proc. R. Soc. Med. 66, 80–88.) may indicate that larger population (higher population density, to be honest) has negative effect on the life expectancy
+This one is less obvious, but research (Calhoun, J.B., 1973. Death squared: the explosive growth and demise of a mouse population. Proc. R. Soc. Med. 66, 80–88.) may indicate that larger population (higher population density, to be honest) has a negative effect on the life expectancy.
 
 Plot population on the y-axis and Life Expectancy on the x-axis:
 
 ```{r pop-lifeexp, echo=FALSE}
-plot(contempData$pop, contempData$lifeExp)
+population <- contempData$pop 
+plot(population, life_Exp)
 ```
 
-Messy.
-
-<!-- This is the end -->
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
