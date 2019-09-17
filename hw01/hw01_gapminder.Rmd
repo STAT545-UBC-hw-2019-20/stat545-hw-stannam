@@ -16,10 +16,12 @@ library(gapminder)
 ```
 
 # First things first: view the whole dataset
+How much rows does the gapminder dataset have?
 
+And what are the first ten rows look like?
 ```{r whole data}
-tibbleData <- tibble::as_tibble(gapminder)
-DT::datatable(tibbleData)
+nrow(gapminder)
+head(gapminder, 10)
 ```
 
 # What I want to do
