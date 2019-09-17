@@ -1,0 +1,78 @@
+---
+title: "Hw01_Ex03 R Markdown for Gapminder exploration"
+author: "Stanley Nam"
+date: "September 17, 2019"
+output: ioslides_presentation
+---
+
+```{r load, warning = FALSE, echo = FALSE}
+library(gapminder)
+```
+
+# Raw data
+
+## First things first: the whole dataset
+
+```{r whole data, echo = FALSE}
+tibbleData <- tibble::as_tibble(gapminder)
+DT::datatable(tibbleData, extensions = 'Scroller', options = list(
+  deferRender = TRUE,
+  scrollY = 340,
+  scroller = TRUE
+))
+
+```
+
+# Objectives
+
+## What I want to do
+
+Investigate factors behind the different life expectancies using contemporary data.
+
+## Samples later than 2000
+
+We are living in the 21st century. Why not give more weight on the contemporary data (from 2001)?
+```{r contemporary data}
+contempData <- gapminder[which(gapminder$year > 2000),]
+head(contempData)
+```
+
+## Samples later than 2000
+
+Provide descriptive statistics of the dataset.
+```{r summary }
+summary(contempData)
+```
+
+# Factors that influence life expectancy
+
+## Correlation between GDP per capita and life expectancy
+
+...although it seems obvious that the rich live longer.
+
+Plot GDP on the y-axis and Life Expectancy on the x-axis:
+```{r gdp-lifeexp, echo=FALSE}
+GDP_per_capita <- contempData$gdpPercap
+life_Exp <- contempData$lifeExp
+plot(GDP_per_capita, life_Exp)
+```
+
+## Correlation between population and life expectancy
+
+Calhoun (1973) indicates that higher population density results in a shorter life expectancy.
+
+Let's plot a graph with population on the y-axis and life expectancy on the x-axis (graph presented on the next slide).
+
+## Correlation between population and life expectancy
+
+Messy..
+```{r pop-lifeexp, echo=FALSE}
+population <- contempData$pop 
+plot(population, life_Exp)
+```
+
+# Discussion and Conclusion
+
+## Discussion and Conclusion
+
+It is fun to make presentation slides using R Markdown.
