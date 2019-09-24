@@ -134,13 +134,70 @@ Pick one categorical variable and one quantitative variable to explore.
 Answer the following questions in whichever way you think is
 appropriate, using dplyr:
 
-  - What are possible values (or range, whichever is appropriate) of
-    each variable?
+> I choose *continent/country* as a categorical variable, and
+> *pop(ulation)* as a quantitative
+variable.
 
-  - What values are typical? What’s the spread? What’s the distribution?
-    Etc., tailored to the variable at hand.
+## What are possible values (or range, whichever is appropriate) of each variable?
 
-  - Feel free to use summary stats, tables, figures.
+Possible values for *continent* are Africa, Americas, Asia, Europe and
+Oceania.
+
+``` r
+gapminder %>%
+  select(continent) %>%
+  summary()
+```
+
+    ##     continent  
+    ##  Africa  :624  
+    ##  Americas:300  
+    ##  Asia    :396  
+    ##  Europe  :360  
+    ##  Oceania : 24
+
+Range of *population* is from 60011 to 1318683096.
+
+``` r
+gapminder %>%
+  select(pop) %>%
+  range()
+```
+
+    ## [1]      60011 1318683096
+
+## What values are typical? What’s the spread? What’s the distribution? Etc., tailored to the variable at hand.
+
+Let’s see the difference of the typical population (mean) of a country
+by continent.
+
+``` r
+gapminder %>%
+  group_by(continent) %>%
+  mutate(contMean = mean(pop) / 1000000) %>%
+  ggplot(aes(continent, contMean)) +
+  scale_y_log10('Mean population (m)') +
+  geom_point()
+```
+
+![](hw02_dplyr_files/figure-gfm/2.1.3-1.png)<!-- -->
+
+Now, compare this to the total population of each continent. By doing
+so, we can investigate whether a continent is overly broken down with
+country borders (whether there is too many countries in a continent).
+
+``` r
+gapminder %>%
+  group_by(continent) %>%
+  mutate(contSum = sum(pop) / 1000000) %>%
+  ggplot(aes(continent, contSum)) +
+  scale_y_log10('Total population (m)') +
+  geom_point()
+```
+
+![](hw02_dplyr_files/figure-gfm/2.1.4-1.png)<!-- -->
+
+We can conclude that Africa is overly broken down with borders.
 
 # Exercise 3: Explore various plot types
 
