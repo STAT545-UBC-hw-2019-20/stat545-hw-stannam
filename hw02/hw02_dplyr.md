@@ -206,8 +206,32 @@ might actually consider making for an analysis. Just don’t make the same
 plots we made in class – feel free to use a data set from the datasets R
 package if you wish.
 
-  - A scatterplot of two quantitative variables.
-  - One other plot besides a scatterplot.
+## Correlation between increased life expectancy and population growth
 
-You don’t have to use all the data in every plot\! It’s fine to filter
-down to one country or a small handful of countries.
+``` r
+gapminder %>%
+  arrange(country, year) %>%
+  group_by(country) %>%
+  mutate(lifeExpInc = tail(lifeExp, 1) - head(lifeExp, 1), popGrowth = (tail(pop, 1) - head(pop, 1)) / 1000000) %>%
+  ggplot(aes(lifeExpInc, popGrowth)) +
+  scale_y_log10('Population growth (m)') +
+  xlab("Increase in life expectancy") +
+  geom_point()
+```
+
+![](hw02_dplyr_files/figure-gfm/3.1-1.png)<!-- -->
+
+## How and when did South Korean economy (i.e., GDP per capita) overtake North Korea?
+
+``` r
+gapminder %>%
+  filter(country == "Korea, Dem. Rep." | country=="Korea, Rep.") %>%
+  filter(year < 1985) %>%
+  ggplot() +
+  geom_line(aes(year, gdpPercap, group = country, color = country)) +
+  xlab("Year") +
+  ylab("GDP per capita") +
+  theme(legend.position = "right")
+```
+
+![](hw02_dplyr_files/figure-gfm/3.2-1.png)<!-- -->

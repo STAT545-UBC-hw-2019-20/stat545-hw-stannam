@@ -157,5 +157,4 @@ gapminder %>%
   xlab("Year") +
   ylab("GDP per capita") +
   theme(legend.position = "right")
-  
 ```
