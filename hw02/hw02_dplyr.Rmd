@@ -1,0 +1,100 @@
+---
+title: "HW02: Gapminder and dplyr"
+author: "Stanley Nam"
+date: "September 24, 2019"
+output: 
+  github_document:
+    toc: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r loading packages, warning=FALSE, echo=FALSE, message=F}
+library(tidyverse)
+library(gapminder)
+```
+
+# Exercise 1: Basic dplyr
+
+## 1.1
+
+Use filter() to subset the gapminder data to three countries of your choice in the 1970’s.
+
+```{r 1.1}
+subData <- gapminder %>%
+  filter(country == "Philippines" | country == "Korea, Dem. Rep." | country == "Korea, Rep.") %>%
+  filter(year >= 1970   & year <= 1979)
+
+subData
+```
+
+## 1.2
+
+Use the pipe operator %>% to select “country” and “gdpPercap” from your filtered dataset in 1.1.
+
+```{r 1.2}
+subData %>% 
+  select(country, gdpPercap)
+```
+
+## 1.3
+
+Filter gapminder to all entries that have experienced a drop in life expectancy. Be sure to include a new variable that’s the increase in life expectancy in your tibble. Hint: you might find the lag() or diff() functions useful.
+
+```{r 1.3}
+gapminder %>%
+# the code below sorts gapminder by country and then year, so that data from a country are presented in increasing year
+  arrange(country, year) %>%
+  
+# in the code below, new column 'lifeExpIncrease' tracks the increase in life expectancy by year.
+  mutate(lifeExpIncrease = lifeExp - lag(lifeExp)) %>%
+  
+# in the code below, lifeExpIncrease below zero means a decrease in lifeExp; 'year - lag(year) > 0' is for sanity check. i.e., year - lag(year) is only above zero if we comparing lifeExp of a same country, as we sorted the data by country and then year.
+  filter(lifeExpIncrease < 0, year - lag(year) > 0)
+```
+
+## 1.4
+
+Filter gapminder so that it shows the max GDP per capita experienced by each country. Hint: you might find the max() function useful here.
+
+```{r 1.4}
+gapminder %>%
+  group_by(country) %>%
+  filter(gdpPercap == max(gdpPercap))
+```
+
+## 1.5
+
+Produce a scatterplot of Canada’s life expectancy vs. GDP per capita using ggplot2, without defining a new variable. That is, after filtering the gapminder data set, pipe it directly into the ggplot() function. Ensure GDP per capita is on a log scale.
+
+```{r 1.5}
+gapminder %>%
+  filter(country == "Canada") %>%
+  ggplot(aes(gdpPercap, lifeExp)) +
+  geom_point() +
+  scale_x_log10('GDP per capita') +
+  ylab("Life Expectancy") +
+  theme_classic()
+```
+
+# Exercise 2: Explore individual variables with dplyr
+
+Pick one categorical variable and one quantitative variable to explore. Answer the following questions in whichever way you think is appropriate, using dplyr:
+
+* What are possible values (or range, whichever is appropriate) of each variable?
+
+* What values are typical? What’s the spread? What’s the distribution? Etc., tailored to the variable at hand.
+
+* Feel free to use summary stats, tables, figures.
+
+# Exercise 3: Explore various plot types
+
+Make two plots that have some value to them. That is, plots that someone might actually consider making for an analysis. Just don’t make the same plots we made in class – feel free to use a data set from the datasets R package if you wish.
+
+- A scatterplot of two quantitative variables.
+- One other plot besides a scatterplot.
+
+You don’t have to use all the data in every plot! It’s fine to filter down to one country or a small handful of countries.
+
