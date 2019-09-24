@@ -174,7 +174,7 @@ by continent.
 ``` r
 gapminder %>%
   group_by(continent) %>%
-  mutate(contMean = mean(pop) / 1000000) %>%
+  summarize(contMean = mean(pop) / 1000000) %>%
   ggplot(aes(continent, contMean)) +
   scale_y_log10('Mean population (m)') +
   geom_point()
@@ -189,7 +189,7 @@ country borders (whether there is too many countries in a continent).
 ``` r
 gapminder %>%
   group_by(continent) %>%
-  mutate(contSum = sum(pop) / 1000000) %>%
+  summarize(contSum = sum(pop) / 1000000) %>%
   ggplot(aes(continent, contSum)) +
   scale_y_log10('Total population (m)') +
   geom_point()

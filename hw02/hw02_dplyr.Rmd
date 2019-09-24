@@ -110,7 +110,7 @@ Let's see the difference of the typical population (mean) of a country by contin
 ```{r 2.1.3}
 gapminder %>%
   group_by(continent) %>%
-  mutate(contMean = mean(pop) / 1000000) %>%
+  summarize(contMean = mean(pop) / 1000000) %>%
   ggplot(aes(continent, contMean)) +
   scale_y_log10('Mean population (m)') +
   geom_point()
@@ -121,7 +121,7 @@ Now, compare this to the total population of each continent. By doing so, we can
 ```{r 2.1.4}
 gapminder %>%
   group_by(continent) %>%
-  mutate(contSum = sum(pop) / 1000000) %>%
+  summarize(contSum = sum(pop) / 1000000) %>%
   ggplot(aes(continent, contSum)) +
   scale_y_log10('Total population (m)') +
   geom_point()
