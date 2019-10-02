@@ -18,3 +18,91 @@ library(gapminder)
 library(DT)
 ```
 
+# **Task Option 1**
+
+I am going to report the absolute and/or relative abundance of countries with low life expectancy over time by continent: It is for determining how many countries on each continent have a life expectancy less than this benchmark, for each year.
+
+An arbitrary threshold of 48 is set for this question. This is the world average in the mid-20th century, according to **Prentice. (2006). "Health, history and hard choices: Funding dilemmas in a fast-changing world". *World Health Organization: Global Health Histories* **
+
+Below 48 is short. And I will report what proportion of countries had a life expectancy of less than 48 years, for each year.
+
+Tibble *shortLife* has columns for the country, continent, year and below48. The value of below48 is TRUE if the life expectancy is less than 48, and TALSE if it is not.
+
+```{r task 1.1}
+shortLife <- 
+  gapminder %>%
+  mutate(below48 = lifeExp < 48) %>%
+  select(country,continent,year,below48) %>%
+  arrange(continent) %>%
+  group_by(continent, year)
+
+DT::datatable(shortLife)
+```
+
+From *shortLife*, we can get the proportion of countries in a continent that have a shorter life expectancy, and show how it decreases over the years! 
+
+```{r task 1.2}
+shortLife %>%
+  summarize(below48Prop = sum(below48)/length(below48)) %>%
+  ggplot(aes(year, below48Prop, group = continent, colour = continent)) +
+  geom_line() +
+  xlab("Year") +
+  ylab("Proportion of countries with a life expectancy below 48")
+```
+
+Overall Europe and Oceania surpass the global baseline after 1957, and most continents have passed the baseline by the mid-1980. Africa is still aiming for the goal. Notably, the proportion rose in Africa during the 1990s.
+
+# **Task Option 3**
+
+In this question I will look at the spread of GDP per capita within the continents.
+
+Tibble *spreadGdp* as presented below, shows the mean, standard deviation, maximum and minimum value of GDP per capita by  continent.
+
+```{r task 3.1}
+spreadGdp <-
+  gapminder %>% 
+  group_by(continent) %>% 
+  summarize(mean = mean(gdpPercap), sd = sd(gdpPercap), max = max(gdpPercap), min = min(gdpPercap)) %>%
+  select(continent, mean, sd, max, min)
+  
+DT::datatable(spreadGdp)
+```
+
+Shown below is a plot that visualizes the same content as tibble *spreadGdp*. However, it does not necessarily rely on *spreadGdp*, meaning I am going to make box plots on the fly from the *gapminder* dataset! (Admittedly, 14 outliers are to be removed in the process.)
+
+```{r task 3.2}
+gapminder %>%
+  mutate(gdpInK = gdpPercap / 1000) %>%
+  ggplot(aes(continent, gdpInK)) +
+  geom_boxplot(outlier.shape = NA) +
+  ylab("GDP per Capita (k)") +
+  scale_y_continuous(limits = c(0, 40), labels = scales::dollar_format())
+```
+
+Generally, Europe and Oceania have the highest GDP per capita, and the deviation is lower in Oceanian countries.
+
+# **Task Option 6**
+
+The comparison of gdpPercap between North and South Korea over time is an interesting topic. It shows how the democratic country came from behind and outperform the authoritarian state. 
+
+A little bit of background information will be needed. During the Japanese Invasion period from 1910 to 1945, the imperialists found the northern part of the Korean peninsula important in its efforts to expand toward the continent (i.e., China and Russia). Therefore, they built factories and developed railroads in the North. 
+
+For this reason, the North Korean economy started in a better condition than its southern neighbour in 1945. Also, the authoritarian regime was fully backed by its communist allies, namely China and the Soviet Union; while South Korea was left alone without any support from neighbouring countries. 
+
+Let us see how the gap in 1945 changes over time.
+
+```{r task 6.1}
+gapminder %>%
+  filter(country == "Korea, Dem. Rep." | country == "Korea, Rep.") %>%
+  mutate(country = as.character(country)) %>%
+  mutate(country = sapply(country, function(x) if (x == "Korea, Dem. Rep.") "North Korea" else "South Korea")) %>% # from cm 7.1.3 
+  ggplot() +
+  geom_line(aes(year, gdpPercap, group = country, color = country)) +
+  xlab("Year") +
+  scale_y_log10("GDP per capita", labels = scales::dollar_format()) +
+  theme(legend.position = "right")
+```
+
+A striking difference that changed the two countries happend after the 1970s. Before that time, North and South Koreas remained 'similar' in terms of government style: an authoritarian dictator planned everything. However, North Korea remained as a dictatorship, while South Korea painfully processed toward democracy. A civil revolution (in 1960), democratic movement in Gwangju (1980) and nationwide (1987) finally ended military dictatorship and the 'voice of people' started to make economic decisions.
+
+North Korean dictatorship might seem efficient up to the 1970s. However, the free economy with democratic rights in South Korea turned out to be more prosperous in the end.
