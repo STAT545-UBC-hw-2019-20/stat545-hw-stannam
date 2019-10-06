@@ -1,0 +1,116 @@
+---
+title: 'Assignment 04: Tidy data and joins'
+author: "Stanley Nam"
+date: "October 8, 2019"
+output: 
+    html_document:
+      keep_md: true
+      toc: true
+      toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning = FALSE, message = FALSE, echo=FALSE}
+library(tidyverse)
+library(gapminder)
+library(DT)
+```
+
+# Exercise 1: Univariate data reshaping
+
+## Univariate Option 1
+
+First, I am going to make a tibble with one row per year, and columns for life expectancy for France and Italy. I have chosen them as they are Romance-language-speaking countries with considerable consumption of red wine. Previous research has found out consumption of red wine reduces the rate of heart attack and thus it is expected to increase life expectancy. And then, I am going to use the new data shape to scatterplot life expectancy for one country against that of another. Finally, I am going to re-lengthen the data.
+
+### 1. A tibble that has first column for year and two columns for the two countries.
+
+```{r task 1.1}
+FI_life <- gapminder %>%
+  filter(country == "France" | country == "Italy") %>% 
+  select(year, country, lifeExp) %>% 
+  pivot_wider(id_cols = year,
+              names_from = country,
+              values_from = lifeExp)
+
+FI_life
+```
+
+### 2. A scatterplot out of the tibble
+
+```{r task 1.2}
+FI_life %>%
+  ggplot(aes(x = France, y = Italy)) +
+  geom_point() +
+  labs(title = "A Scatterplot of Life Expectancy between France and Italy",
+       x = "France",
+       y = "Italy") + 
+  theme_bw()
+```
+
+### 3. Re-lengthening the data
+
+```{r task 1.3}
+FI_life %>% 
+  pivot_longer(cols = c(France, Italy),
+               names_to = "country",
+               values_to = "lifeExp") %>% 
+  arrange(country) %>% 
+  datatable()
+```
+
+
+# Exercise 2: Multivariate data reshaping
+
+## Multivariate Option 1
+
+In this question, I am going to make a tibble with one row per year, and columns for life expectancy *and* GDP per capita for Oceanian countries (i.e., Australia and New Zealand).
+
+After generating the tibble as above, I am going to re-lengthen the data.
+
+### 1. A tibble with one column for year and other columns for the life expectancy and GDP per capita of the two countries
+
+```{r task 2.1}
+oceanianData <-
+  gapminder %>% 
+  filter(continent == "Oceania") %>% 
+  select(year, country, lifeExp, gdpPercap) %>% 
+  pivot_wider(id_cols = year,
+              names_from = country,
+              names_sep = "_",
+              values_from = c(lifeExp, gdpPercap))
+
+datatable(oceanianData)
+```
+
+### 2. Re-lengthening
+
+```{r task 2.2}
+oceanianData %>% 
+  pivot_longer(cols = -year,
+               names_to = c(".value", "country"),
+               names_sep = "_") %>% 
+  datatable()
+```
+
+
+# Exercise 3: Table Joins
+
+```{r task 3.0, include=FALSE}
+# Reading in the wedding guestlist (guest tibble) and email addresses(email tibble).
+guest <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/attend.csv")
+email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/emails.csv")
+```
+
+## 3.1 
+
+For each guest in the guestlist (*guest* tibble), add a column for email address, which can be found in the *email* tibble.
+
+```{r task 3.1}
+guest <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/attend.csv")
+email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/emails.csv")
+```
+
+
