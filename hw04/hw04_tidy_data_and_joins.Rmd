@@ -133,6 +133,5 @@ Make a guestlist that includes everyone we have emails for (in addition to those
 ```{r task 3.3}
 email %>%
   full_join(guest, by = "name") %>%
-  select(-party) %>% # For some reason, we have another column called 'party.' Basically, persons with the same email share a value in this column. We don't need this so remove it.
   datatable()
 ```
