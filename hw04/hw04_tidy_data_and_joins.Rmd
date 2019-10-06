@@ -109,8 +109,30 @@ email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/maste
 For each guest in the guestlist (*guest* tibble), add a column for email address, which can be found in the *email* tibble.
 
 ```{r task 3.1}
-guest <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/attend.csv")
-email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/emails.csv")
+email <- email %>% 
+  separate_rows(guest, sep = ', ') %>% # tibble email has different names concatenated in a row so separate them
+  rename(name = guest)  # As in the guest tibble the names are under a column named 'name,' I'm using the same for the email tibble
+
+guest %>% 
+  left_join(email, by = "name")
 ```
 
+## 3.2
 
+Who do we have emails for, yet are not on the guestlist?
+
+```{r task 3.2}
+email %>%
+  anti_join(guest, by = "name")
+```
+
+## 3.3
+
+Make a guestlist that includes everyone we have emails for (in addition to those on the original guestlist).
+
+```{r task 3.3}
+email %>%
+  full_join(guest, by = "name") %>%
+  select(-party) %>% # For some reason, we have another column called 'party.' Basically, persons with the same email share a value in this column. We don't need this so remove it.
+  datatable()
+```

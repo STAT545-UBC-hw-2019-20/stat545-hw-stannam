@@ -78,8 +78,8 @@ FI_life %>%
   datatable()
 ```
 
-<!--html_preserve--><div id="htmlwidget-117748739d69c1aa611d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-117748739d69c1aa611d">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1952,1957,1962,1967,1972,1977,1982,1987,1992,1997,2002,2007,1952,1957,1962,1967,1972,1977,1982,1987,1992,1997,2002,2007],["France","France","France","France","France","France","France","France","France","France","France","France","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy"],[67.41,68.93,70.51,71.55,72.38,73.83,74.89,76.34,77.46,78.64,79.59,80.657,65.94,67.81,69.24,71.06,72.19,73.48,74.98,76.42,77.44,78.82,80.24,80.546]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>country<\/th>\n      <th>lifeExp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-4ef6287adbf17bdc1b01" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4ef6287adbf17bdc1b01">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1952,1957,1962,1967,1972,1977,1982,1987,1992,1997,2002,2007,1952,1957,1962,1967,1972,1977,1982,1987,1992,1997,2002,2007],["France","France","France","France","France","France","France","France","France","France","France","France","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy","Italy"],[67.41,68.93,70.51,71.55,72.38,73.83,74.89,76.34,77.46,78.64,79.59,80.657,65.94,67.81,69.24,71.06,72.19,73.48,74.98,76.42,77.44,78.82,80.24,80.546]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>country<\/th>\n      <th>lifeExp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 
 # Exercise 2: Multivariate data reshaping
@@ -106,8 +106,8 @@ oceanianData <-
 datatable(oceanianData)
 ```
 
-<!--html_preserve--><div id="htmlwidget-39e4a1ce6df3e104bdaa" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-39e4a1ce6df3e104bdaa">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12"],[1952,1957,1962,1967,1972,1977,1982,1987,1992,1997,2002,2007],[69.12,70.33,70.93,71.1,71.93,73.49,74.74,76.32,77.56,78.83,80.37,81.235],[69.39,70.26,71.24,71.52,71.89,72.22,73.84,74.32,76.33,77.55,79.11,80.204],[10039.59564,10949.64959,12217.22686,14526.12465,16788.62948,18334.19751,19477.00928,21888.88903,23424.76683,26997.93657,30687.75473,34435.36744],[10556.57566,12247.39532,13175.678,14463.91893,16046.03728,16233.7177,17632.4104,19007.19129,18363.32494,21050.41377,23189.80135,25185.00911]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>lifeExp_Australia<\/th>\n      <th>lifeExp_New Zealand<\/th>\n      <th>gdpPercap_Australia<\/th>\n      <th>gdpPercap_New Zealand<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-3194b229f2b8cf2988ca" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3194b229f2b8cf2988ca">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12"],[1952,1957,1962,1967,1972,1977,1982,1987,1992,1997,2002,2007],[69.12,70.33,70.93,71.1,71.93,73.49,74.74,76.32,77.56,78.83,80.37,81.235],[69.39,70.26,71.24,71.52,71.89,72.22,73.84,74.32,76.33,77.55,79.11,80.204],[10039.59564,10949.64959,12217.22686,14526.12465,16788.62948,18334.19751,19477.00928,21888.88903,23424.76683,26997.93657,30687.75473,34435.36744],[10556.57566,12247.39532,13175.678,14463.91893,16046.03728,16233.7177,17632.4104,19007.19129,18363.32494,21050.41377,23189.80135,25185.00911]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>lifeExp_Australia<\/th>\n      <th>lifeExp_New Zealand<\/th>\n      <th>gdpPercap_Australia<\/th>\n      <th>gdpPercap_New Zealand<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ### 2. Re-lengthening
 
@@ -120,8 +120,8 @@ oceanianData %>%
   datatable()
 ```
 
-<!--html_preserve--><div id="htmlwidget-a9c52ee1903e5a6bb3a4" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a9c52ee1903e5a6bb3a4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1952,1952,1957,1957,1962,1962,1967,1967,1972,1972,1977,1977,1982,1982,1987,1987,1992,1992,1997,1997,2002,2002,2007,2007],["Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand"],[69.12,69.39,70.33,70.26,70.93,71.24,71.1,71.52,71.93,71.89,73.49,72.22,74.74,73.84,76.32,74.32,77.56,76.33,78.83,77.55,80.37,79.11,81.235,80.204],[10039.59564,10556.57566,10949.64959,12247.39532,12217.22686,13175.678,14526.12465,14463.91893,16788.62948,16046.03728,18334.19751,16233.7177,19477.00928,17632.4104,21888.88903,19007.19129,23424.76683,18363.32494,26997.93657,21050.41377,30687.75473,23189.80135,34435.36744,25185.00911]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>country<\/th>\n      <th>lifeExp<\/th>\n      <th>gdpPercap<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-2d77cd04be7562f473cc" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2d77cd04be7562f473cc">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1952,1952,1957,1957,1962,1962,1967,1967,1972,1972,1977,1977,1982,1982,1987,1987,1992,1992,1997,1997,2002,2002,2007,2007],["Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand","Australia","New Zealand"],[69.12,69.39,70.33,70.26,70.93,71.24,71.1,71.52,71.93,71.89,73.49,72.22,74.74,73.84,76.32,74.32,77.56,76.33,78.83,77.55,80.37,79.11,81.235,80.204],[10039.59564,10556.57566,10949.64959,12247.39532,12217.22686,13175.678,14526.12465,14463.91893,16788.62948,16046.03728,18334.19751,16233.7177,19477.00928,17632.4104,21888.88903,19007.19129,23424.76683,18363.32494,26997.93657,21050.41377,30687.75473,23189.80135,34435.36744,25185.00911]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>country<\/th>\n      <th>lifeExp<\/th>\n      <th>gdpPercap<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 
 # Exercise 3: Table Joins
@@ -134,32 +134,62 @@ For each guest in the guestlist (*guest* tibble), add a column for email address
 
 
 ```r
-guest <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/attend.csv")
+email <- email %>% 
+  separate_rows(guest, sep = ', ') %>% # tibble email has different names concatenated in a row so separate them
+  rename(name = guest)  # As in the guest tibble the names are under a column named 'name,' I'm using the same for the email tibble
+
+guest %>% 
+  left_join(email, by = "name")
 ```
 
 ```
-## Parsed with column specification:
-## cols(
-##   party = col_double(),
-##   name = col_character(),
-##   meal_wedding = col_character(),
-##   meal_brunch = col_character(),
-##   attendance_wedding = col_character(),
-##   attendance_brunch = col_character(),
-##   attendance_golf = col_character()
-## )
+## # A tibble: 30 x 8
+##    party name  meal_wedding meal_brunch attendance_wedd~ attendance_brun~
+##    <dbl> <chr> <chr>        <chr>       <chr>            <chr>           
+##  1     1 Somm~ PENDING      PENDING     PENDING          PENDING         
+##  2     1 Phil~ vegetarian   Menu C      CONFIRMED        CONFIRMED       
+##  3     1 Blan~ chicken      Menu A      CONFIRMED        CONFIRMED       
+##  4     1 Emaa~ PENDING      PENDING     PENDING          PENDING         
+##  5     2 Blai~ chicken      Menu C      CONFIRMED        CONFIRMED       
+##  6     2 Nige~ <NA>         <NA>        CANCELLED        CANCELLED       
+##  7     3 Sine~ PENDING      PENDING     PENDING          PENDING         
+##  8     4 Ayra~ vegetarian   Menu B      PENDING          PENDING         
+##  9     5 Atla~ PENDING      PENDING     PENDING          PENDING         
+## 10     5 Denz~ fish         Menu B      CONFIRMED        CONFIRMED       
+## # ... with 20 more rows, and 2 more variables: attendance_golf <chr>,
+## #   email <chr>
 ```
+
+## 3.2
+
+Who do we have emails for, yet are not on the guestlist?
+
 
 ```r
-email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/emails.csv")
+email %>%
+  anti_join(guest, by = "name")
 ```
 
 ```
-## Parsed with column specification:
-## cols(
-##   guest = col_character(),
-##   email = col_character()
-## )
+## # A tibble: 3 x 2
+##   name            email                          
+##   <chr>           <chr>                          
+## 1 Turner Jones    tjjones12@hotmail.ca           
+## 2 Albert Marshall themarshallfamily1234@gmail.com
+## 3 Vivian Marshall themarshallfamily1234@gmail.com
 ```
 
+## 3.3
 
+Make a guestlist that includes everyone we have emails for (in addition to those on the original guestlist).
+
+
+```r
+email %>%
+  full_join(guest, by = "name") %>%
+  select(-party) %>% # For some reason, we have another column called 'party.' Basically, persons with the same email share a value in this column. We don't need this so remove it.
+  datatable()
+```
+
+<!--html_preserve--><div id="htmlwidget-b9bfdef9c862760931bb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9bfdef9c862760931bb">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33"],["Sommer Medrano","Phillip Medrano","Blanka Medrano","Emaan Medrano","Blair Park","Nigel Webb","Sinead English","Ayra Marks","Jolene Welsh","Hayley Booker","Amayah Sanford","Erika Foley","Ciaron Acosta","Diana Stuart","Daisy-May Caldwell","Martin Caldwell","Violet Caldwell","Nazifa Caldwell","Eric Caldwell","Rosanna Bird","Kurtis Frost","Huma Stokes","Samuel Rutledge","Eddison Collier","Stewart Nicholls","Turner Jones","Albert Marshall","Vivian Marshall","Atlanta Connolly","Denzel Connolly","Chanelle Shah","Cosmo Dunkley","Cai Mcdaniel"],["sommm@gmail.com","sommm@gmail.com","sommm@gmail.com","sommm@gmail.com","bpark@gmail.com","bpark@gmail.com","singlish@hotmail.ca","marksa42@gmail.com","jw1987@hotmail.com","jw1987@hotmail.com","erikaaaaaa@gmail.com","erikaaaaaa@gmail.com","shining_ciaron@gmail.com","doodledianastu@gmail.com","caldwellfamily5212@gmail.com","caldwellfamily5212@gmail.com","caldwellfamily5212@gmail.com","caldwellfamily5212@gmail.com","caldwellfamily5212@gmail.com","rosy1987b@gmail.com","rosy1987b@gmail.com","humastokes@gmail.com","humastokes@gmail.com","eddison.collier@gmail.com","eddison.collier@gmail.com","tjjones12@hotmail.ca","themarshallfamily1234@gmail.com","themarshallfamily1234@gmail.com",null,null,null,null,null],["PENDING","vegetarian","chicken","PENDING","chicken",null,"PENDING","vegetarian",null,"vegetarian",null,"PENDING","PENDING","vegetarian","chicken","PENDING","PENDING","chicken","chicken","vegetarian","PENDING",null,"chicken","PENDING","chicken",null,null,null,"PENDING","fish","chicken","PENDING","fish"],["PENDING","Menu C","Menu A","PENDING","Menu C",null,"PENDING","Menu B",null,"Menu C","PENDING","PENDING","Menu A","Menu C","Menu B","PENDING","PENDING","PENDING","Menu B","Menu C","PENDING",null,"Menu C","PENDING","Menu B",null,null,null,"PENDING","Menu B","Menu C","PENDING","Menu C"],["PENDING","CONFIRMED","CONFIRMED","PENDING","CONFIRMED","CANCELLED","PENDING","PENDING","CANCELLED","CONFIRMED","CANCELLED","PENDING","PENDING","CONFIRMED","CONFIRMED","PENDING","PENDING","PENDING","CONFIRMED","CONFIRMED","PENDING","CANCELLED","CONFIRMED","PENDING","CONFIRMED",null,null,null,"PENDING","CONFIRMED","CONFIRMED","PENDING","CONFIRMED"],["PENDING","CONFIRMED","CONFIRMED","PENDING","CONFIRMED","CANCELLED","PENDING","PENDING","CANCELLED","CONFIRMED","PENDING","PENDING","PENDING","CONFIRMED","CONFIRMED","PENDING","PENDING","PENDING","CONFIRMED","CONFIRMED","PENDING","CANCELLED","CONFIRMED","PENDING","CONFIRMED",null,null,null,"PENDING","CONFIRMED","CONFIRMED","PENDING","CONFIRMED"],["PENDING","CONFIRMED","CONFIRMED","PENDING","CONFIRMED","CANCELLED","PENDING","PENDING","CANCELLED","CONFIRMED","PENDING","PENDING","PENDING","CONFIRMED","CONFIRMED","PENDING","PENDING","PENDING","CONFIRMED","CONFIRMED","PENDING","CANCELLED","CONFIRMED","PENDING","CONFIRMED",null,null,null,"PENDING","CONFIRMED","CONFIRMED","PENDING","CONFIRMED"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>email<\/th>\n      <th>meal_wedding<\/th>\n      <th>meal_brunch<\/th>\n      <th>attendance_wedding<\/th>\n      <th>attendance_brunch<\/th>\n      <th>attendance_golf<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
