@@ -1,0 +1,50 @@
+---
+title: "HW05: Factor and figure management"
+author: "Stanley Nam"
+date: "October 17, 2019"
+output: 
+    html_document:
+      keep_md: true
+      toc: true
+      toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning = FALSE, message = FALSE, echo=FALSE}
+library(tidyverse)
+library(gapminder)
+library(DT)
+library(here)
+```
+
+
+# Exercise 1: Explain the value of the here::here package
+
+For the cause of replicability, my data analysis should be disseminated with the intermediate process. So, in addition to the results and discussion section I may provide the raw data and the R codes that I used to manipulate / analyze such data. However, not everyone has the same environment and I do: different OS's, different directory hierarchies (which makes thing difficult to use absolute pathes) and so one. Therefore, I should return the environment to the Tabula Rasa and fix it there before actually running the process. Previous practices, something that I actually used in a [previous project](), incorporate the use of the **rm()** and **setwd()** function. However, they simply mask the problem without providing the real solution! 
+
+More problematic is some untold assumptions that was made in the process from my side. For example, previously loaded packages may have overwritten functions I intended to use! As such packages are not attached without an explicit statement, researchers trying to replicate my analysis would get different results. Therefore, it would be a better practice, not just for disseminating the data and analysis process but as a general habit in writing R codes, to start any code with the  **here** package
+
+# Exercise 2: Factor management
+
+I chose to work on the *gapminder* dataset, and I am going to analyze *continent* (a factor).
+
+DO SOMETHING HERE!!!!!!!!!!!!
+
+# Exercise 3: File I/O
+Experiment with at least one of:
+
+- write_csv()/read_csv() (and/or TSV friends),
+- saveRDS()/readRDS(),
+- dput()/dget().
+
+
+# Exercise 4: Visualization design
+
+Create a side-by-side plot and juxtapose your first attempt
+
+# Exercise 5: Writing figures to file
+
+Use ggsave()
