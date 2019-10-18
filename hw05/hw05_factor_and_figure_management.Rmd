@@ -29,21 +29,101 @@ More problematic is some untold assumptions that were made in the process from m
 
 # Exercise 2: Factor management
 
-I chose to work on the *gapminder* dataset, and I am going to analyze *continent* (a factor).
+I chose to work on the *gapminder* dataset. It has two factor variables *continent* and *country*. Between the two, my focus is on *continent*. Specifically, the datapoints associated with Oceania will be dropped.
 
-DO SOMETHING HERE!!!!!!!!!!!!
+Before we dive in the actual analysis, let's make sure that these two variables are actually factors.
+
+```{r 2.0.1}
+gapminder
+```
+
+It is explicitly shown that *country* and *continent* are actually <fctr> (factor) variables, and *continent* has five levels: "Africa", "Americas", "Asia", "Europe" and "Oceania" as shown below
+
+```{r 2.0.2}
+levels(gapminder$continent)
+```
+
+## 2.1 Drop factor / levels
+
+The reason I chose to drop "Oceania" is simple: it has the fewest number of data points.
+
+```{r 2.1}
+no_oceania <- gapminder %>% 
+  filter(continent != "Oceania") %>% # everything except Oceania
+  droplevels() #drop the unused level (i.e., Oceania). 
+
+levels(no_oceania)
+```
+
+As shown above, Oceania is not one of the continents in the *no_oceania* dataset.
+
+## 2.2 Reordering levels
+Let us plot the distribution of life expectancy of the four continents without Oceania.
+
+```{r 2.1}
+no_oceania %>%
+  group_by(continent) %>%
+  ggplot(aes(continent, lifeExp)) +
+  geom_violin()
+
+```
+
+Now let's try to reorder the x-axis. How about having the one with the largest population comes first? Let's do this.
+
+```{r 2.1}
+no_oceania %>%
+  group_by(continent) %>%
+  ggplot() +
+  geom_violin(
+    aes(fct_reorder(continent, pop, sum, .desc = TRUE), # for each continent, sum(pop) and then sort in the ASCENDING order
+        lifeExp)
+    )
+
+```
+
+As we all know, Asia has the largest population followed by Americas, Africa and Europe. So the violin plots are presented in that order.
 
 # Exercise 3: File I/O
-Experiment with at least one of:
+In this exercise, I'm going to summarize the life expectancy data in 'no_oceania' tibble, which I've just generated above, and  export it to disk. And then I'll reload the exported file.
 
-- write_csv()/read_csv() (and/or TSV friends),
-- saveRDS()/readRDS(),
-- dput()/dget().
+First, let's summarize the tibble so that the average and standard deviation of life expectancy are calculated by countires. After that, let's export the data.
 
+```{r 3.1}
+no_oceania %>%
+  group_by(country) %>%
+  summarize(averageLifeExp = mean(lifeExp),
+            sdLifeExp = sd(lifeExp)) %>%
+  write_csv(here::here("hw05", "data","ex03_lifeExp.csv"))
+
+```
+
+Now let's import the exported .csv file from the disk!
+
+```{r 3.2}
+imported <- read_csv(here::here("hw05", "data","ex03_lifeExp.csv"))
+imported
+
+```
+
+Looking good, except for the fact that the country is not a *factor* variable as shown below! So the datatype didn't survive the round trip of writing to file then reading back in.
+
+```{r 3.3}
+class(imported$country)
+```
+
+However, when we re-order the country by the averageLifeExp, it would be changed into *factor* before reordered.
+
+```{r 3.4}
+imported %>% 
+  mutate(country = fct_reorder(country, averageLifeExp, .desc = TRUE)) %>% 
+  arrange(country)
+```
 
 # Exercise 4: Visualization design
 
-Create a side-by-side plot and juxtapose your first attempt
+Create a side-by-side plot and juxtapose your first attempt.
+
+
 
 # Exercise 5: Writing figures to file
 
